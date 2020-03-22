@@ -23,8 +23,9 @@ function changeAll(colourHex){
     ledController.render(leds);
 }
 
-app.get('/simon', () => {
-    changeAll('#ff0000')
+app.get('/simon', (req, res) => {
+    changeAll('#ff0000');
+    res.send(200);
 })
 
 app.get('/kayleigh', () => {
