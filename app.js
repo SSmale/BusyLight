@@ -58,6 +58,15 @@ app.get('/party', (req, res) => {
     res.sendStatus(200);
 })
 
+app.get('/colour/:r/:g/:b/:a', (req,res) => {
+    const a = req.params.a || 255;
+    const r = req.params.r|| 255;
+    const g= req.params.g|| 255;
+    const b= req.params.b|| 255;
+    changeAll(r, g, b);
+    res.sendStatus(200)
+})
+
 app.get('/kayleigh', (req, res) => {
     res.sendStatus(200)
 })
