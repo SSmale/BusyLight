@@ -53,7 +53,7 @@ app.get('/party', (req, res) => {
     setTimeout(() => {
         clearInterval(intervalId);
         ledController.render(old)
-    },5000)
+    },60*60*30)
 
     res.sendStatus(200);
 })
