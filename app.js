@@ -19,13 +19,23 @@ const leds = [
 ledController.render(leds);
 
 function changeAll(r,g,b){
-    leds.map((x,i) => leds[i] =  rgb2Int(r,g,b));
+    leds.map((x,i) => leds[i] = rgb2Int(r,g,b));
     console.log(leds);
     ledController.render(leds);
 }
 
-app.get('/simon', (req, res) => {
+app.get('/simon/dnd', (req, res) => {
     changeAll(255,0,0);
+    res.send(200);
+})
+
+app.get('/simon/busy', (req, res) => {
+    changeAll(255,211,0);
+    res.send(200);
+})
+
+app.get('/simon/free', (req, res) => {
+    changeAll(0,255,0);
     res.send(200);
 })
 
