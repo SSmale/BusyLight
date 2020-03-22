@@ -19,7 +19,8 @@ const leds = [
 ledController.render(leds);
 
 function changeAll(r,g,b){
-    leds.map(x => x = rgb2Int(r,g,b));
+    leds.map((x,i) => leds[i] =  rgb2Int(r,g,b));
+    console.log(leds);
     ledController.render(leds);
 }
 
