@@ -18,13 +18,13 @@ const leds = [
 
 ledController.render(leds);
 
-function changeAll(colourHex){
-    leds.map(x => x = colourHex);
+function changeAll(r,g,b){
+    leds.map(x => x = rgb2Int(r,g,b));
     ledController.render(leds);
 }
 
 app.get('/simon', (req, res) => {
-    changeAll('#ff0000');
+    changeAll(255,0,0);
     res.send(200);
 })
 
@@ -36,7 +36,16 @@ app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
   });
   
+function colorwheel(pos) {
+pos = 255 - pos;
+if (pos < 85) { return rgb2Int(255 - pos * 3, 0, pos * 3); }
+else if (pos < 170) { pos -= 85; return rgb2Int(0, pos * 3, 255 - pos * 3); }
+else { pos -= 170; return rgb2Int(pos * 3, 255 - pos * 3, 0); }
+}
 
+function rgb2Int(r, g, b) {
+return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
 // // Loop every 0.1 sec: randomise an index and a colour and display it
 // const interval = setInterval(function() {
 //     const randomIndex = Math.floor(Math.random() * NUMBER_OF_LEDS);
